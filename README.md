@@ -36,7 +36,7 @@ Leave `<cmd>` blank to run tests.
 
 ## Supported platforms
 
-* Counter-Strike Souce.
+* Counter-Strike Source
 
 Most commands should work with TF2 but YMMV.
 
