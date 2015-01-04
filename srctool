@@ -160,9 +160,9 @@ cmd_module() {
 }
 
 cmd_rcon() {
-  if [[ $# < 3 ]]
+  if [[ $# < 2 ]]
   then
-    echo "'$0 rcon' requires three arguments: the server's IP address, the rcon password, and the command."
+    echo "'$0 rcon' requires three arguments: the server's IP address, the rcon password, and the command (if not supplied test will be run)."
     print_usage
     exit 1
   fi

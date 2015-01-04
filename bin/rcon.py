@@ -523,7 +523,7 @@ class HLDS(SRCDS):
 
 
 if __name__ == "__main__":
-    parser = OptionParser(usage="SRCDS.py -a ADDR -p RCONPASS [command]")
+    parser = OptionParser(usage="rcon.py -a ADDR -p RCONPASS [command]")
     parser.add_option("-p",dest="rcon",default="",help="Specifies the rcon password")
     parser.add_option("-a",dest="addr",default="",help="Specifies the address of the server to connect to")
     (options,args) = parser.parse_args()
@@ -534,7 +534,7 @@ if __name__ == "__main__":
         
     s = SRCDS(options.addr,rconpass=options.rcon)
 
-    if not args or args[0] == 'test':
+    if not args:
         # run testing procedures
         print("*"*66)
         print("Testing module...")
