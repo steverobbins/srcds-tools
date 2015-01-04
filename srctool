@@ -171,8 +171,8 @@ cmd_rcon() {
   PASSWD=$2
   CMD=${@:3}
 
-  echo -e "Sending rcon @ $ADDR ($PASSWD): '$CMD' ...\n"
-  ./bin/rcon.py -a $ADDR -p $PASSWD $CMD
+  echo -e "Sending rcon to $ADDR: '$CMD' ...\n"
+  $SCRIPT_PATH/bin/rcon.py -a $ADDR -p $PASSWD $CMD
   if [[ $? == 0 ]]
   then
     print_done
@@ -182,14 +182,14 @@ cmd_rcon() {
 }
 
 print_done() {
-  GREEN='\e[0;32m'
-  ENDCOLOR='\e[0m'
+  GREEN="\033[0;32m"
+  ENDCOLOR="\033[0m"
   echo -e "[ ${GREEN}DONE${ENDCOLOR} ]"
 }
 
 print_error() {
-  RED='\e[0;31m'
-  ENDCOLOR='\e[0m'
+  RED="\033[0;31m"
+  ENDCOLOR="\033[0m"
   echo -e "[ ${RED}ERROR${ENDCOLOR} ] $1"
 }
 

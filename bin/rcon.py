@@ -159,7 +159,7 @@ Note: timeout is in seconds. host may be ip or hostname
         else:
             strs = re.split('[\000]', raw_packet[:-1], 1)
 
-	strs.append([''])
+        strs.append('')
         return (packetlen, req_id, command, strs[0], strs[1])
     
     def _authenticate_rcon(self):
@@ -322,7 +322,8 @@ No parsing is done by this function.
             elif kw == "players":
                 #players :  17 (24 max)
                 t = parts[1].split('(')
-                info['players']   = int(t[0])
+                # "20" or "20 humans, 0 bots"
+                info['players']   = t[0].strip()
                 info['slots'] = int(t[1].split()[0])
             line = lines.pop(0)
         keys = re.split(' +', line)
@@ -531,10 +532,9 @@ if __name__ == "__main__":
         os.system(sys.argv[0] + " -h")
         sys.exit(1)
         
-    print("Connecting to %s with rcon password of %s" % (options.addr,options.rcon))
     s = SRCDS(options.addr,rconpass=options.rcon)
 
-    if not args:
+    if not args or args[0] == 'test':
         # run testing procedures
         print("*"*66)
         print("Testing module...")
@@ -543,14 +543,14 @@ if __name__ == "__main__":
         sinfo,d = s.status()
         for u in d:
             print ("userid %d, name = %s" % (u,d[u]['name']))
- 
+
         print("Server name    : " + sinfo['name'])
         print("IP             : %s" % sinfo['ip'])
         print("Port           : %s" % sinfo['port'])
         print("FPS            : %s" % sinfo['fps'])
         print("CPU Usage      : %s" % sinfo['cpu_usage'])
         print("Server version : %s" % sinfo['version'])
-        print("Players present: %d" % sinfo['players'])
+        print("Players present: %s" % sinfo['players'])
         print("Number of slots: %d" % sinfo['slots'])
         print("Map            : " + sinfo['map'])
         print("Passworded     : " + str(sinfo['passworded']))
@@ -560,4 +560,3 @@ if __name__ == "__main__":
         # run the rcon command that the user specified
         print s.rcon_command(' '.join(args))
         
-
