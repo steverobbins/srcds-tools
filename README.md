@@ -34,10 +34,17 @@ Send rcon command to the server at the specified address.
 
 Leave `<cmd>` blank to run tests.
 
-## Support
+## Supported platforms
 
-Currently supports only Counter-Strike Souce.
+* Counter-Strike Souce.
 
-## Author
+Most commands should work with TF2 but YMMV.
+
+
+## Authors
 
 * [jimbru](https://github.com/jimbru)
+* [steverobbins](https://github.com/steverobbins)
+
+Based on works from [stellarhopper](https://github.com/stellarhopper/logstreamer)
+
